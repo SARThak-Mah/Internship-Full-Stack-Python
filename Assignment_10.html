@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Leave Form</title>
+    <link href="style_10.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="form-container">
+      <div class="banner-header">
+        <h2>Leave Form</h2>
+        <select>
+          <option>More Actions ▼</option>
+        </select>
+      </div>
+
+      <form>
+        <table class="form-table">
+          <tr>
+            <td class="label-cell">Employee Email</td>
+            <td>
+              <input
+                type="email"
+                class="input-field readonly-field"
+                name="email"
+                value="appuser@zohocreator.com"
+              />
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label-cell">Employee Id</td>
+            <td>
+              <input
+                type="text"
+                class="input-field readonly-field"
+                name="employeeId"
+                value="232"
+              />
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label-cell">Employee Name</td>
+            <td>
+              <input
+                type="text"
+                class="input-field readonly-field"
+                name="employeeName"
+                value="appuser"
+              />
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label-cell">Designation</td>
+            <td>
+              <input
+                type="text"
+                class="input-field readonly-field"
+                name="designation"
+                value="Team Leader"
+              />
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label-cell">
+              Leave Type<span class="required">*</span>
+            </td>
+            <td>
+              <select class="input-field">
+                <option>-Select-</option>
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label-cell">From<span class="required">*</span></td>
+            <td>
+              <div class="date-container">
+                <input type="date" />
+                <span class="date-text">📅 [dd-MM-yyyy]</span>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label-cell">To<span class="required">*</span></td>
+            <td>
+              <div class="date-container">
+                <input type="date" />
+                <span class="date-text">📅 [dd-MM-yyyy]</span>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label-cell">No of Days</td>
+            <td>
+              <input type="text" class="input-field" style="width: 180px" />
+            </td>
+          </tr>
+
+          <tr>
+            <td
+              class="label-cell"
+              style="vertical-align: top; padding-top: 15px"
+            >
+              Reason
+            </td>
+            <td><textarea class="input-field"></textarea></td>
+          </tr>
+        </table>
+
+        <div class="button-bar">
+          <button type="submit" class="btn">Submit</button>
+          <button type="reset" class="btn">Reset</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Student Information Form</title>
+  </head>
+
+  <body>
+    <form>
+      <table border="2" align="center" cellpadding="10" cellspacing="0">
+        <tr>
+          <th style="background-color: blue">Name</th>
+          <th style="background-color: blue">Value</th>
+        </tr>
+        <tr>
+          <td>Name</td>
+          <td>
+            <input type="text" name="name" size="30" placeholder="type here" />
+          </td>
+        </tr>
+        <tr>
+          <td>Sex</td>
+          <td>
+            <input type="radio" name="gender" value="Male" /> Male
+            <br />
+            <input type="radio" name="gender" value="Female" /> Female
+          </td>
+        </tr>
+        <tr>
+          <td>Eye Color</td>
+          <td>
+            <select default="color" name="color" size="1">
+              <option>Green</option>
+              <option>White</option>
+              <option>Blue</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Check all that apply</td>
+          <td>
+            <input type="checkbox" name="checkbox" value="over6ft" />Over 6ft
+            Tall
+            <br />
+            <input type="checkbox" name="checkbox" value="over200" />Over 200
+            pounds
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            DESCIBE YOUR ATLECTIC ABILITY:
+            <br />
+            <textarea
+              placeholder="Please describe your athletic ability..."
+              name="athletic"
+              rows="5"
+              cols="50"
+            ></textarea>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="2">
+            <input type="submit" value="ENTER YOUR INFORMATION" />
+          </th>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>

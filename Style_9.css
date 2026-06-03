@@ -1,0 +1,63 @@
+body {
+  font-family: Arial;
+  background: white;
+  padding: 20px;
+}
+.box {
+  background: white;
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid #999;
+}
+.bar {
+  background: #b06a8a;
+  color: white;
+  padding: 8px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding: 20px;
+}
+.title {
+  font-weight: bold;
+  text-decoration: underline;
+  margin: 15px 0 10px 0;
+}
+.row {
+  display: flex;
+  margin-bottom: 10px;
+}
+.row label {
+  width: 140px;
+  font-weight: bold;
+  font-size: 14px;
+}
+.row input,
+.row select,
+.row textarea {
+  flex: 1;
+  padding: 3px;
+  border: 1px solid #999;
+}
+.row textarea {
+  height: 80px;
+  resize: none;
+}
+.footer {
+  background: #e1e1e1;
+  padding: 10px;
+  text-align: center;
+}
+.btn {
+  background: #b06a8a;
+  color: white;
+  border: none;
+  padding: 5px 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
