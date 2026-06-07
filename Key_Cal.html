@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Keypad Calculator</title>
+    <link href="KC.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="grid-calc">
+      <input type="text" class="display" id="box-screen" value="0" readonly />
+
+      <div class="keypad">
+        <button class="key" onclick="press('1')">1</button>
+        <button class="key" onclick="press('2')">2</button>
+        <button class="key" onclick="press('3')">3</button>
+        <button class="key operator-key" onclick="press('+')">+</button>
+
+        <button class="key" onclick="press('4')">4</button>
+        <button class="key" onclick="press('5')">5</button>
+        <button class="key" onclick="press('6')">6</button>
+        <button class="key operator-key" onclick="press('-')">-</button>
+
+        <button class="key" onclick="press('7')">7</button>
+        <button class="key" onclick="press('8')">8</button>
+        <button class="key" onclick="press('9')">9</button>
+        <button class="key operator-key" onclick="press('*')">*</button>
+
+        <button class="key" onclick="press('0')">0</button>
+        <button class="key operator-key" onclick="press('/')">/</button>
+        <button
+          class="key operator-key"
+          style="background: #fcdcdc"
+          onclick="clearScreen()"
+        >
+          C
+        </button>
+        <button
+          class="key operator-key"
+          style="background: #dcfce7"
+          onclick="solve()"
+        >
+          =
+        </button>
+      </div>
+    </div>
+
+    <script>
+      let screen = document.getElementById("box-screen");
+
+      function press(char) {
+        if (screen.value === "0" || screen.value === "Error") {
+          screen.value = char;
+        } else {
+          screen.value += char;
+        }
+      }
+
+      function clearScreen() {
+        screen.value = "";
+      }
+
+      function solve() {
+        try {
+          if (screen.value) {
+            screen.value = eval(screen.value);
+          }
+        } catch (err) {
+          screen.value = "Error";
+        }
+      }
+    </script>
+  </body>
+</html>

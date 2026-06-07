@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Basic Operation Calculator</title>
+    <link href="BC.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="calc-container">
+      <div class="inputs-row">
+        <div class="input-group">
+          <label>No1</label>
+          <input type="number" id="num1" />
+        </div>
+        <div class="input-group">
+          <label>No2</label>
+          <input type="number" id="num2" />
+        </div>
+      </div>
+
+      <div class="buttons-row">
+        <button class="op-btn" onclick="calculate('add')">Add</button>
+        <button class="op-btn" onclick="calculate('sub')">Sub</button>
+        <button class="op-btn" onclick="calculate('mul')">Mul</button>
+        <button class="op-btn" onclick="calculate('div')">Div</button>
+      </div>
+
+      <div class="result-row">
+        <label>Result</label>
+        <input type="text" id="result" readonly />
+      </div>
+    </div>
+
+    <script>
+      function calculate(operation) {
+        let n1 = parseFloat(document.getElementById("num1").value);
+        let n2 = parseFloat(document.getElementById("num2").value);
+        let resField = document.getElementById("result");
+
+        if (isNaN(n1) || (isNaN(n2) && operation !== "sqrt")) {
+          resField.value = "Enter numbers";
+          return;
+        }
+
+        let output;
+        if (operation === "add") output = n1 + n2;
+        else if (operation === "sub") output = n1 - n2;
+        else if (operation === "mul") output = n1 * n2;
+        else if (operation === "div")
+          output = n2 !== 0 ? n1 / n2 : "Cannot div by 0";
+
+        resField.value = output;
+      }
+    </script>
+  </body>
+</html>
