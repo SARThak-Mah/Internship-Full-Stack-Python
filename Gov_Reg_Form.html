@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Government Registration Form</title>
+    <link rel="stylesheet" href="Gov_Reg_Form.css" />
+  </head>
+  <body>
+    <div class="form-box">
+      <form onsubmit="return validateForm();">
+        <table>
+          <tr>
+            <td class="label-cell">Fname</td>
+            <td>
+              <input
+                type="text"
+                id="fname"
+                class="input-field"
+                placeholder="ABCD"
+                required
+              />
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label-cell">Lname</td>
+            <td>
+              <input
+                type="text"
+                id="lname"
+                class="input-field"
+                placeholder="EFGH"
+                required
+              />
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label-cell">Email</td>
+            <td>
+              <input
+                type="email"
+                id="email"
+                class="input-field"
+                placeholder="example@domain.com"
+                required
+              />
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label-cell">Mobile</td>
+            <td>
+              <input
+                type="tel"
+                id="mobile"
+                class="input-field"
+                placeholder="1234567890"
+                required
+              />
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label-cell">Aadhaar Number</td>
+            <td>
+              <input
+                type="text"
+                id="aadhaar"
+                class="input-field"
+                placeholder="2222-4444-8888"
+                required
+              />
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label-cell">Gender</td>
+            <td class="radio-group">
+              <label><input type="radio" name="gender" value="M" /> M</label>
+              <label><input type="radio" name="gender" value="F" /> F</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label-cell">Password</td>
+            <td>
+              <input
+                type="password"
+                id="password"
+                class="input-field"
+                placeholder="StrongP@ssw0rd"
+                required
+              />
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label-cell">Conf. Password</td>
+            <td>
+              <input
+                type="password"
+                id="confPassword"
+                class="input-field"
+                placeholder="Confirm Password"
+                required
+              />
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label-cell">Pan Number</td>
+            <td>
+              <input
+                type="text"
+                id="pan"
+                class="input-field"
+                placeholder="ATUKP5827K"
+                required
+              />
+            </td>
+          </tr>
+        </table>
+
+        <div class="btn-container">
+          <button type="submit" class="submit-btn">Submit</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      function validateForm() {
+        let fname = document.getElementById("fname").value;
+        let lname = document.getElementById("lname").value;
+        let email = document.getElementById("email").value;
+        let mobile = document.getElementById("mobile").value;
+        let pword = document.getElementById("password").value;
+        let confPass = document.getElementById("confPassword").value;
+        let aadhaar = document.getElementById("aadhaar").value;
+        let pan = document.getElementById("pan").value;
+
+        for (let i = 0; i < fname.length; i++) {
+          let code = fname.charCodeAt(i);
+          if (code < 65 || code > 90) {
+            alert("First Name must contain ONLY CAPITAL LETTERS.");
+            return false;
+          }
+        }
+
+        for (let i = 0; i < lname.length; i++) {
+          let code = lname.charCodeAt(i);
+          if (code < 65 || code > 90) {
+            alert("Last Name must contain ONLY CAPITAL LETTERS.");
+            return false;
+          }
+        }
+
+        let atIndex = -1;
+        let dotIndex = -1;
+
+        for (let i = 0; i < email.length; i++) {
+          let code = email.charCodeAt(i);
+          if (code === 64) {
+            atIndex = i;
+          }
+          if (code === 46) {
+            dotIndex = i;
+          }
+        }
+
+        if (atIndex === -1 || dotIndex === -1) {
+          alert("Invalid Email! It must contain both '@' and '.' characters.");
+          return false;
+        }
+        if (atIndex === 0 || atIndex === email.length - 1) {
+          alert("Invalid '@' position in email.");
+          return false;
+        }
+        if (dotIndex < atIndex + 2 || dotIndex === email.length - 1) {
+          alert(
+            "Invalid email format! The '.' must come after the '@' with characters in between.",
+          );
+          return false;
+        }
+
+        let firstChar = mobile.charAt(0);
+        if (mobile.length !== 10 || isNaN(mobile)) {
+          alert("Mobile number must be exactly 10 digits.");
+          return false;
+        }
+        if (firstChar < "6" || firstChar > "9") {
+          alert("Mobile number must start with 6, 7, 8, or 9.");
+          return false;
+        }
+
+        if (aadhaar.length !== 12 || isNaN(aadhaar)) {
+          alert("Aadhaar number must be exactly 12 digits.");
+          return false;
+        }
+
+        if (pword.length < 8) {
+          alert("Password must be at least 8 characters long.");
+          return false;
+        }
+
+        let hasCapital = false;
+        let hasSmall = false;
+        let hasNumber = false;
+        let hasSpecial = false;
+
+        for (let i = 0; i < pword.length; i++) {
+          let code = pword.charCodeAt(i);
+
+          if (code >= 65 && code <= 90) {
+            hasCapital = true;
+          } else if (code >= 97 && code <= 122) {
+            hasSmall = true;
+          } else if (code >= 48 && code <= 57) {
+            hasNumber = true;
+          } else if (
+            (code >= 33 && code <= 47) ||
+            (code >= 58 && code <= 64) ||
+            (code >= 91 && code <= 96)
+          ) {
+            hasSpecial = true;
+          }
+        }
+
+        if (!hasCapital) {
+          alert("Password must contain at least one uppercase letter (A-Z).");
+          return false;
+        }
+        if (!hasSmall) {
+          alert("Password must contain at least one lowercase letter (a-z).");
+          return false;
+        }
+        if (!hasNumber) {
+          alert("Password must contain at least one digit (0-9).");
+          return false;
+        }
+        if (!hasSpecial) {
+          alert(
+            "Password must contain at least one special character (like @, !, #, $, etc.).",
+          );
+          return false;
+        }
+
+        if (pword !== confPass) {
+          alert("Passwords do not match.");
+          return false;
+        }
+
+        if (pan.length !== 10) {
+          alert("PAN number must be exactly 10 characters long.");
+          return false;
+        }
+        if (pan !== pan.toUpperCase()) {
+          alert("PAN number must be in ALL CAPITAL LETTERS.");
+          return false;
+        }
+
+        alert("Government Registration Form submitted successfully!");
+        return true;
+      }
+    </script>
+  </body>
+</html>

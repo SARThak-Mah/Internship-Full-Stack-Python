@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Canvas Assignment - Wave Graph</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      canvas {
+        background-color: white;
+        border: 2px solid #333;
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="waveCanvas" width="400" height="400"></canvas>
+
+    <script>
+      const canvas = document.getElementById("waveCanvas");
+      const ctx = canvas.getContext("2d");
+
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = "Black";
+
+      // 1. Draw the Vertical Y-Axis Line
+      ctx.beginPath();
+      ctx.moveTo(70, 50);
+      ctx.lineTo(70, 350);
+      ctx.stroke();
+
+      // 2. Draw the Horizontal X-Axis Center Baseline
+      ctx.beginPath();
+      ctx.strokeStyle = "Black"; // Dark line color for axes
+      ctx.lineWidth = 2;
+      ctx.moveTo(70, 200);
+      ctx.lineTo(370, 200);
+      ctx.stroke();
+
+      // 3. Draw the Sine Wave Curve Mathematically
+      ctx.beginPath();
+      ctx.strokeStyle = "red"; // Red curve line color
+      ctx.lineWidth = 2;
+
+      let isFirstPoint = true;
+      for (let x = 70; x <= 370; x++) {
+        // Simple trigonometry: Calculating height y relative to center baseline 200
+        let y = 200 - Math.sin((x - 70) * 0.03) * 50;
+
+        if (isFirstPoint) {
+          ctx.moveTo(x, y);
+          isFirstPoint = false;
+        } else {
+          ctx.lineTo(x, y);
+        }
+      }
+      ctx.stroke();
+    </script>
+  </body>
+</html>

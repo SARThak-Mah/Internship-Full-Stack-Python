@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Canvas Assignment - Face</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      canvas {
+        background-color: white;
+        border: 2px solid #333;
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="faceCanvas" width="400" height="400"></canvas>
+
+    <script>
+      const canvas = document.getElementById("faceCanvas");
+      const ctx = canvas.getContext("2d");
+
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = "#111";
+
+      // 1. Main Face Outline (Circle)
+      ctx.beginPath();
+      ctx.arc(200, 200, 120, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // 2. Left Eye
+      ctx.beginPath();
+      ctx.arc(150, 160, 10, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // 3. Right Eye
+      ctx.beginPath();
+      ctx.arc(250, 160, 10, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // 4. Left Eyebrow (Upward arc)
+      ctx.beginPath();
+      ctx.arc(150, 160, 25, Math.PI * 1.2, Math.PI * 1.8);
+      ctx.stroke();
+
+      // 5. Right Eyebrow (Upward arc)
+      ctx.beginPath();
+      ctx.arc(250, 160, 25, Math.PI * 1.2, Math.PI * 1.8);
+      ctx.stroke();
+
+      // 6. Nose (Line down + bottom tick mark)
+      ctx.beginPath();
+      ctx.moveTo(200, 175);
+      ctx.quadraticCurveTo(200, 220, 180, 240);
+      ctx.lineTo(210, 240);
+      ctx.stroke();
+
+      // 7. Smiling Mouth (Smooth Curve)
+      ctx.beginPath();
+      ctx.moveTo(140, 260);
+      ctx.quadraticCurveTo(200, 310, 260, 260);
+      ctx.stroke();
+    </script>
+  </body>
+</html>
