@@ -6,7 +6,8 @@ import "./index.css";
 //import MyHooks from "./MyHooks.jsx";
 // import MyEvent from "./MyEvent.jsx";
 // import List from "./List.jsx";
-import LoginPage from "./LoginPage.jsx";
+//import LoginPage from "./LoginPage.jsx";
+import Api from "./Api.jsx";
 
 /*createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -27,4 +28,6 @@ import LoginPage from "./LoginPage.jsx";
 
 //createRoot(document.getElementById("root")).render(<MyHooks />);
 
-createRoot(document.getElementById("root")).render(<LoginPage />);
+//createRoot(document.getElementById("root")).render(<LoginPage />);
+
+createRoot(document.getElementById("root")).render(<Api />);
