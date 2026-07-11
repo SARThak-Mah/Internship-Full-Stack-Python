@@ -1,0 +1,6 @@
+Welcome to CNC WEB WORLD Welcome to Python..
+This file Exists in
+1 -> c:\new\target\file.txt
+2 -> C:\Users\SARThak\Documents\Intership_Full_Stack_Python_CNC\Python_Jupyter\file.txt
+
+This file is not cloned. It is copied 

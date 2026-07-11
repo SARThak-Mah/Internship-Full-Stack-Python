@@ -1,0 +1,372 @@
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 23
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> create database fp;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| fp                 |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> \c
+mysql> use fp;
+Database changed
+mysql> create table student (rollno INT, name VARCHAR(50), age INT, marks FLOAT);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> insert into student values (1, 'Sarthak', 20, 90);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values (2, 'Ojaswi', 18, 85);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into student values (3, 'Aryan', 18, 95);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values (4, 'Aadil', 18, 80);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select rollno, name from student;
++--------+---------+
+| rollno | name    |
++--------+---------+
+|      1 | Sarthak |
+|      2 | Ojaswi  |
+|      3 | Aryan   |
+|      4 | Aadil   |
++--------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student;
++--------+---------+------+-------+
+| rollno | name    | age  | marks |
++--------+---------+------+-------+
+|      1 | Sarthak |   20 |    90 |
+|      2 | Ojaswi  |   18 |    85 |
+|      3 | Aryan   |   18 |    95 |
+|      4 | Aadil   |   18 |    80 |
++--------+---------+------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student where rollno = 1;
++--------+---------+------+-------+
+| rollno | name    | age  | marks |
++--------+---------+------+-------+
+|      1 | Sarthak |   20 |    90 |
++--------+---------+------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where marks > 90;
++--------+-------+------+-------+
+| rollno | name  | age  | marks |
++--------+-------+------+-------+
+|      3 | Aryan |   18 |    95 |
++--------+-------+------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where marks > 85 and age < 18;
+Empty set (0.00 sec)
+
+mysql> select * from student where marks > 85 and age > 18;
++--------+---------+------+-------+
+| rollno | name    | age  | marks |
++--------+---------+------+-------+
+|      1 | Sarthak |   20 |    90 |
++--------+---------+------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where marks > 85 and age >= 18;
++--------+---------+------+-------+
+| rollno | name    | age  | marks |
++--------+---------+------+-------+
+|      1 | Sarthak |   20 |    90 |
+|      3 | Aryan   |   18 |    95 |
++--------+---------+------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where age in (19, 20);
++--------+---------+------+-------+
+| rollno | name    | age  | marks |
++--------+---------+------+-------+
+|      1 | Sarthak |   20 |    90 |
++--------+---------+------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where age in (18, 19, 20);
++--------+---------+------+-------+
+| rollno | name    | age  | marks |
++--------+---------+------+-------+
+|      1 | Sarthak |   20 |    90 |
+|      2 | Ojaswi  |   18 |    85 |
+|      3 | Aryan   |   18 |    95 |
+|      4 | Aadil   |   18 |    80 |
++--------+---------+------+-------+
+4 rows in set (0.00 sec)
+
+mysql> update student set age = 17 where rollno = 3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++--------+---------+------+-------+
+| rollno | name    | age  | marks |
++--------+---------+------+-------+
+|      1 | Sarthak |   20 |    90 |
+|      2 | Ojaswi  |   18 |    85 |
+|      3 | Aryan   |   17 |    95 |
+|      4 | Aadil   |   18 |    80 |
++--------+---------+------+-------+
+4 rows in set (0.00 sec)
+
+mysql> update student set marks = 91 where rollno = 2;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++--------+---------+------+-------+
+| rollno | name    | age  | marks |
++--------+---------+------+-------+
+|      1 | Sarthak |   20 |    90 |
+|      2 | Ojaswi  |   18 |    91 |
+|      3 | Aryan   |   17 |    95 |
+|      4 | Aadil   |   18 |    80 |
++--------+---------+------+-------+
+4 rows in set (0.00 sec)
+
+mysql> update student set age = 17 where rollno = 3, 4;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', 4' at line 1
+mysql> update student set age = 17 where rollno = 3 and 4;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> select * from student;
++--------+---------+------+-------+
+| rollno | name    | age  | marks |
++--------+---------+------+-------+
+|      1 | Sarthak |   20 |    90 |
+|      2 | Ojaswi  |   18 |    91 |
+|      3 | Aryan   |   17 |    95 |
+|      4 | Aadil   |   18 |    80 |
++--------+---------+------+-------+
+4 rows in set (0.00 sec)
+
+mysql> update student set age = 17 where rollno = 4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++--------+---------+------+-------+
+| rollno | name    | age  | marks |
++--------+---------+------+-------+
+|      1 | Sarthak |   20 |    90 |
+|      2 | Ojaswi  |   18 |    91 |
+|      3 | Aryan   |   17 |    95 |
+|      4 | Aadil   |   17 |    80 |
++--------+---------+------+-------+
+4 rows in set (0.00 sec)
+
+mysql> delete from student where rollno = 4;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++--------+---------+------+-------+
+| rollno | name    | age  | marks |
++--------+---------+------+-------+
+|      1 | Sarthak |   20 |    90 |
+|      2 | Ojaswi  |   18 |    91 |
+|      3 | Aryan   |   17 |    95 |
++--------+---------+------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table student add column loc VARCHAR(50);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++--------+---------+------+-------+------+
+| rollno | name    | age  | marks | loc  |
++--------+---------+------+-------+------+
+|      1 | Sarthak |   20 |    90 | NULL |
+|      2 | Ojaswi  |   18 |    91 | NULL |
+|      3 | Aryan   |   17 |    95 | NULL |
++--------+---------+------+-------+------+
+3 rows in set (0.00 sec)
+
+mysql> update student set loc = 'kamothe' where rollno = 1;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set loc = 'kharghar' where rollno = 2;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set loc = 'kalamboli' where rollno = 3;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++--------+---------+------+-------+-----------+
+| rollno | name    | age  | marks | loc       |
++--------+---------+------+-------+-----------+
+|      1 | Sarthak |   20 |    90 | kamothe   |
+|      2 | Ojaswi  |   18 |    91 | kharghar  |
+|      3 | Aryan   |   17 |    95 | kalamboli |
++--------+---------+------+-------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student values (5, 'Sam', 20, 98);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into student values (5, 'Sam', 20, 98, 'Bandra');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from student;
++--------+---------+------+-------+-----------+
+| rollno | name    | age  | marks | loc       |
++--------+---------+------+-------+-----------+
+|      1 | Sarthak |   20 |    90 | kamothe   |
+|      2 | Ojaswi  |   18 |    91 | kharghar  |
+|      3 | Aryan   |   17 |    95 | kalamboli |
+|      5 | Sam     |   20 |    98 | Bandra    |
++--------+---------+------+-------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student where marks > 80 order by marks asc;
++--------+---------+------+-------+-----------+
+| rollno | name    | age  | marks | loc       |
++--------+---------+------+-------+-----------+
+|      1 | Sarthak |   20 |    90 | kamothe   |
+|      2 | Ojaswi  |   18 |    91 | kharghar  |
+|      3 | Aryan   |   17 |    95 | kalamboli |
+|      5 | Sam     |   20 |    98 | Bandra    |
++--------+---------+------+-------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student where marks > 80 order by marks desc;
++--------+---------+------+-------+-----------+
+| rollno | name    | age  | marks | loc       |
++--------+---------+------+-------+-----------+
+|      5 | Sam     |   20 |    98 | Bandra    |
+|      3 | Aryan   |   17 |    95 | kalamboli |
+|      2 | Ojaswi  |   18 |    91 | kharghar  |
+|      1 | Sarthak |   20 |    90 | kamothe   |
++--------+---------+------+-------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student where marks > 80 order by age desc;
++--------+---------+------+-------+-----------+
+| rollno | name    | age  | marks | loc       |
++--------+---------+------+-------+-----------+
+|      1 | Sarthak |   20 |    90 | kamothe   |
+|      5 | Sam     |   20 |    98 | Bandra    |
+|      2 | Ojaswi  |   18 |    91 | kharghar  |
+|      3 | Aryan   |   17 |    95 | kalamboli |
++--------+---------+------+-------+-----------+
+4 rows in set (0.01 sec)
+
+mysql> select loc from student;
++-----------+
+| loc       |
++-----------+
+| kamothe   |
+| kharghar  |
+| kalamboli |
+| Bandra    |
++-----------+
+4 rows in set (0.04 sec)
+
+mysql> select loc from student group by loc;
++-----------+
+| loc       |
++-----------+
+| kamothe   |
+| kharghar  |
+| kalamboli |
+| Bandra    |
++-----------+
+4 rows in set (0.04 sec)
+
+mysql> select distinct loc from student;
++-----------+
+| loc       |
++-----------+
+| kamothe   |
+| kharghar  |
+| kalamboli |
+| Bandra    |
++-----------+
+4 rows in set (0.00 sec)
+
+mysql> select max(marks) from student;
++------------+
+| max(marks) |
++------------+
+|         98 |
++------------+
+1 row in set (0.04 sec)
+
+mysql> select min(marks) from student;
++------------+
+| min(marks) |
++------------+
+|         90 |
++------------+
+1 row in set (0.04 sec)
+
+mysql> select sum(marks) from student;
++------------+
+| sum(marks) |
++------------+
+|        374 |
++------------+
+1 row in set (0.04 sec)
+
+mysql> select avg(marks) from student;
++------------+
+| avg(marks) |
++------------+
+|       93.5 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select count(marks) from student;
++--------------+
+| count(marks) |
++--------------+
+|            4 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql>

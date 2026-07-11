@@ -1,0 +1,108 @@
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 28
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use fp;
+Database changed
+mysql> create table dept (deptId INT primary key, DeptName VARCHAR(50));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into dept values (1, 'IT');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into dept values (2, 'Admin');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into dept values (3, 'Devloper');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from dept;
++--------+----------+
+| deptId | DeptName |
++--------+----------+
+|      1 | IT       |
+|      2 | Admin    |
+|      3 | Devloper |
++--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> create table emp (empId INT primary key, empName VARCHAR(50), empSal INT, deptId INT, foreign key(deptId) references dept(deptId));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from dept left outer join emp on dept.deptId=emp.deptId;
++--------+----------+-------+---------+--------+--------+
+| deptId | DeptName | empId | empName | empSal | deptId |
++--------+----------+-------+---------+--------+--------+
+|      1 | IT       |  NULL | NULL    |   NULL |   NULL |
+|      2 | Admin    |  NULL | NULL    |   NULL |   NULL |
+|      3 | Devloper |  NULL | NULL    |   NULL |   NULL |
++--------+----------+-------+---------+--------+--------+
+3 rows in set (0.01 sec)
+
+mysql> insert into emp values (101, 'Sarthak', 90000, 3);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into emp values (102, 'Ojaswi', 85000, 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into emp values (102, 'Ojaswi', 85000, 2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into emp values (103, 'Aadil', 80000, 1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from emp;
++-------+---------+--------+--------+
+| empId | empName | empSal | deptId |
++-------+---------+--------+--------+
+|   101 | Sarthak |  90000 |      3 |
+|   102 | Ojaswi  |  85000 |      2 |
+|   103 | Aadil   |  80000 |      1 |
++-------+---------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from dept left outer join emp on dept.deptId=emp.deptId;
++--------+----------+-------+---------+--------+--------+
+| deptId | DeptName | empId | empName | empSal | deptId |
++--------+----------+-------+---------+--------+--------+
+|      1 | IT       |   103 | Aadil   |  80000 |      1 |
+|      2 | Admin    |   102 | Ojaswi  |  85000 |      2 |
+|      3 | Devloper |   101 | Sarthak |  90000 |      3 |
++--------+----------+-------+---------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> delete from emp where eid=103;
+ERROR 1054 (42S22): Unknown column 'eid' in 'where clause'
+mysql> delete from emp where empId=103;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from dept left outer join emp on dept.deptId=emp.deptId;
++--------+----------+-------+---------+--------+--------+
+| deptId | DeptName | empId | empName | empSal | deptId |
++--------+----------+-------+---------+--------+--------+
+|      1 | IT       |  NULL | NULL    |   NULL |   NULL |
+|      2 | Admin    |   102 | Ojaswi  |  85000 |      2 |
+|      3 | Devloper |   101 | Sarthak |  90000 |      3 |
++--------+----------+-------+---------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from dept inner join emp on dept.did=emp.did;
+ERROR 1054 (42S22): Unknown column 'dept.did' in 'on clause'
+mysql> select * from dept inner join emp on dept.deptId=emp.deptId;
++--------+----------+-------+---------+--------+--------+
+| deptId | DeptName | empId | empName | empSal | deptId |
++--------+----------+-------+---------+--------+--------+
+|      3 | Devloper |   101 | Sarthak |  90000 |      3 |
+|      2 | Admin    |   102 | Ojaswi  |  85000 |      2 |
++--------+----------+-------+---------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql>
