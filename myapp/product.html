@@ -1,0 +1,22 @@
+{% extends 'myapp/base.html' %}
+{% block container %}
+<div class="container">
+    <div class="row">
+        <h1 class="text-success">{{msg}}</h1>
+        <div class="col-md-6 col-lg-6 col-xl-6">
+            <form method="post" enctype="multipart/form-data" action="/myapp/product_data/">
+                {% csrf_token %}
+                Pname:<input type="text" name="pname" class="form-control" ><br>
+                PCategory:<input type="text" name="pcat" class="form-control" ><br>
+                Price:<input type="text" name="pprice" class="form-control" ><br>
+                Date:<input type="date" name="pdate" class="form-control"><br>
+                Image:<input type="file" name="pfile" class="form-control"><br>
+
+                <input type="submit" name="sub" value="Submit">
+                <input type="submit" name="sub" value="Display">
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

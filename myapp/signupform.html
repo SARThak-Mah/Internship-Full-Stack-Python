@@ -1,0 +1,16 @@
+{% extends 'myapp/base.html' %}
+
+{% block container %}
+<div class="container">
+    <h1>Sign up</h1>
+    <div class="col-md-6 col-lg-6 col-xl-6 mg-auto">
+    <form method="post" action="/myapp/signupdata/">
+        {% csrf_token %}
+        Username:<input type="text" name="uname" class="form-control"><br>
+        Password:<input type="password" name="password" class="form-control"><br>
+        Email:<input type="email" name="email" class="form-control"><br>
+        <input type="submit" value="Submit" class="btn btn-primary">
+    </form>
+    </div>
+</div>
+{% endblock %}
