@@ -1,0 +1,108 @@
+{% extends 'MyApp/base.html' %}
+
+{% block container %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Student Registration</h3>
+                </div>
+                <div class="card-body">
+
+                    {% if msg %}
+                        <div class="alert alert-danger">{{ msg }}</div>
+                    {% endif %}
+
+                   <form method="post" action="/MyApp/student_data/" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" name="full_name" class="form-control" required>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Mobile Number</label>
+                                <input type="number" name="mobile" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Course</label>
+                                <select name="course" class="form-select" required>
+                                    <option value="" selected disabled>Select Course...</option>
+                                    <option value="Full Stack Python">Full Stack Python</option>
+                                    <option value="Data Science">Data Science</option>
+                                    <option value="Java Full Stack">Java Full Stack</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">City</label>
+                                <input type="text" name="city" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label d-block">Gender</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" value="Male" required>
+                                    <label class="form-check-label">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" value="Female">
+                                    <label class="form-check-label">Female</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Date of Birth</label>
+                                <input type="date" name="dob" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label d-block">Skills</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="skills" value="Python">
+                                <label class="form-check-label">Python</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="skills" value="Django">
+                                <label class="form-check-label">Django</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="skills" value="HTML/CSS">
+                                <label class="form-check-label">HTML/CSS</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="skills" value="SQL">
+                                <label class="form-check-label">SQL</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Profile Photo (JPG or PNG format only)</label>
+                            <input type="file" name="profile_photo" class="form-control" accept=".jpg,.jpeg,.png" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">About Yourself</label>
+                            <textarea name="about" class="form-control" rows="3" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100">Submit Record</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

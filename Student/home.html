@@ -1,0 +1,18 @@
+{% extends 'MyApp/base.html' %}
+
+{% block title %} Home - MSBTE Portal {% endblock %}
+
+{% block container %}
+<div class="container my-5">
+    <div class="p-5 bg-white rounded-3 shadow-sm border text-center">
+        <h1 class="display-5 fw-bold text-primary">Welcome to MSBTE Portal</h1>
+        <p class="col-md-8 mx-auto fs-5 text-muted my-3">
+            Manage student registrations, view profiles, and track course records efficiently.
+        </p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
+            <a href="/MyApp/student/" class="btn btn-primary btn-lg px-4 me-sm-2">Register New Student</a>
+            <a href="/MyApp/show_students/" class="btn btn-outline-secondary btn-lg px-4">View Directory</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
